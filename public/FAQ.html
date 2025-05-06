@@ -44,6 +44,29 @@
                 text-align: center;
                 margin-top: 50px;
             }
+            .faq-question {
+                font-weight: 600;
+                cursor: pointer;
+                padding: 15px;
+                background-color: white;
+                margin-bottom: 5px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+            .faq-question:hover {
+                background-color: rgb(145, 52, 145);
+                color: white;
+            }
+
+            .faq-answer {
+                display: none;
+                padding: 15px;
+                background-color: #f8f8f8;
+                margin-bottom: 10px;
+                border-radius: 5px;
+            }
+
         </style>
     </head>
     <body>
@@ -62,18 +85,54 @@
         <p class="text-muted">Below you'll find a list of our most frequently asked questions. <br>If you cannot find what you're looking for, please reach out via email, and we'll be happy to help.</p>
     </div>
 
+    <!-- Script -->
+     <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const questions = document.querySelectorAll('.faq-question');
+
+            questions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
+            });
+            });
+        });
+     </script>
+
     <!-- FAQ Section -->
     <div class="container mt-4">
-        <div class="faq-table list-group">
-            <a href="#" class="list-group-item list-group-item-action" onclick="alert('Backup info')">How do I backup my data?</a>
-            <a href="#" class="list-group-item list-group-item-action">How do I restore from a backup?</a>
-            <a href="#" class="list-group-item list-group-item-action">How do I delete all data in the app?</a>
-            <a href="#" class="list-group-item list-group-item-action">How do I synchronize Trackify data between devices using a Dropbox account?</a>
-            <a href="#" class="list-group-item list-group-item-action">How do I set a monthly budget in Trackify?</a>
-            <a href="#" class="list-group-item list-group-item-action">Can I export my data to a spreadsheet?</a>
-            <a href="#" class="list-group-item list-group-item-action">How do I enable dark mode in the app?</a>
+        <div class="faq-table">
+            <div class="faq-item">
+                <div class="faq-question">How do I backup my data?</div>
+                <div class="faq-answer">The website is currently in development mode.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How do I restore from a backup?</div>
+                <div class="faq-answer">The website is currently in development mode.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How do I delete all data in the app?</div>
+                <div class="faq-answer">The website is currently in development mode.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How do I synchronize Trackify data between devices using a Dropbox account?</div>
+                <div class="faq-answer">The website is currently in development mode.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How do I set a monthly budget in Trackify?</div>
+                <div class="faq-answer">The website is currently in development mode.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can I export my data to a spreadsheet?</div>
+                <div class="faq-answer">The website is currently in development mode.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How do I enable dark mode in the app?</div>
+                <div class="faq-answer">The website is currently in development mode.</div>
+            </div>
         </div>
     </div>
+    
 
     <!-- Download Section -->
     <div class="download-section">

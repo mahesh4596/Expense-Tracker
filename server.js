@@ -77,15 +77,16 @@ a.get("/value",function(req,resp){
 })
 
 a.post("/submit-expense", function(req, res) {
-    let amount = req.body.amount;
-    let note = req.body.note;
+    let { amount, note, category, date } = req.body;
 
-    let query = "INSERT INTO expenses (amount, note) VALUES (?, ?)";
-    db.query(query, [amount, note], function(err, result) {
+    let query = "INSERT INTO expenses (amount, note, category, dot) VALUES (?, ?, ?, ?)";
+
+    db.query(query, [amount, note, category, date], function(err, result) {
         if (err) {
-            res.send("Database Error: " + err.message);
+            console.error("Insert error:", err.message);
+            res.json({ error: "Database error: " + err.message });
         } else {
-            res.send("Expense Submitted Successfully!");
+            res.json({ message: "Expense added successfully!" });
         }
     });
 })

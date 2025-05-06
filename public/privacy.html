@@ -2,35 +2,39 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trackify Privacy Policy</title>
+
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <!-- FontAwesome for icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: rgb(231, 157, 231);
         }
 
-        .logo {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .top-bar {
+            background-color: rgb(167, 64, 167);
+            padding: 20px;
+            color: white;
         }
 
-        .logo img {
+        .top-bar .header-text {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .top-bar img {
             height: 50px;
             width: 50px;
-        }
-
-        .header-text {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: purple;
         }
 
         .section-title {
@@ -42,13 +46,24 @@
         .footer-link {
             font-size: 1.2rem;
             color: purple;
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            color: white;
+            text-decoration: underline;
         }
 
         .footer-icon {
             font-size: 1.5rem;
             color: purple;
         }
-        .text-center{
+
+        .footer-icon:hover {
+            color: white;
+        }
+
+        .text-center h1 {
             color: purple;
         }
     </style>
@@ -56,13 +71,13 @@
 
 <body>
 
-    <div class="container mt-5">
-        <!-- Logo Section -->
-        <div class="logo mb-4">
-            <div class="header-text">Trackify</div>
-            <img src="Pics/web_logo.jpg" alt="Trackify Logo">
-        </div>
+    <!-- Top Bar -->
+    <div class="top-bar d-flex justify-content-between align-items-center px-4">
+        <div class="header-text">Trackify</div>
+        <img src="Pics/web_logo.jpg" alt="Trackify Logo" class="rounded-circle">
+    </div>
 
+    <div class="container mt-5">
         <!-- Privacy Policy Heading -->
         <div class="text-center mb-3">
             <h1>Privacy Policy</h1>
@@ -78,13 +93,11 @@
 
             <p>If you do not agree with the terms of this Privacy Policy, please do not access the app.</p>
 
-            <!-- Personal Information Section -->
             <div class="section">
                 <h2 class="section-title">What personal information do we collect from the people who use our app?</h2>
                 <p>Your email address is collected if you send a “Trackify crash report” or an email to our support team.</p>
             </div>
 
-            <!-- Information Usage Section -->
             <div class="section">
                 <h2 class="section-title">How do we use your information?</h2>
                 <ul>
@@ -94,37 +107,31 @@
                 </ul>
             </div>
 
-            <!-- Third-Party Disclosure Section -->
             <div class="section">
                 <h2 class="section-title">Third-party disclosure</h2>
                 <p>We do not sell, trade, or transfer your Personally Identifiable Information to outside parties.</p>
             </div>
 
-            <!-- Third-Party Links Section -->
             <div class="section">
                 <h2 class="section-title">Third-party links</h2>
                 <p>Occasionally, we may include or offer third-party products or services on our site. These sites have independent privacy policies, and we are not responsible for their content or activities.</p>
             </div>
 
-            <!-- Google Section -->
             <div class="section">
                 <h2 class="section-title">Google</h2>
                 <p>We may use Google AdSense and Admob Advertising on our website and app. Google uses cookies to serve ads based on user interaction with our site.</p>
             </div>
 
-            <!-- COPPA Section -->
             <div class="section">
                 <h2 class="section-title">COPPA (Children Online Privacy Protection Act)</h2>
                 <p>We do not specifically market to children under the age of 13 years old.</p>
             </div>
 
-            <!-- Amendments Section -->
             <div class="section">
                 <h2 class="section-title">Amendments to Privacy Policy</h2>
                 <p>We have the right to amend this Privacy Policy at any time. Any changes will be posted here, and appropriate notifications will be made.</p>
             </div>
 
-            <!-- Contact Section -->
             <div class="section">
                 <h2 class="section-title">Contact Info</h2>
                 <p>If you'd like to contact us with inquiries regarding your Personal Data, you can email us at our contact email.</p>
@@ -135,7 +142,7 @@
         <!-- Footer Section -->
         <footer class="mt-5">
             <div class="row text-center">
-                <div class="col">
+                <div class="col mb-2">
                     <a href="./wlcmpageb.html" target="_blank" class="footer-link">Home</a>
                     &nbsp;|&nbsp;
                     <a href="privacyb.html" target="_blank" class="footer-link">Privacy</a>
@@ -143,14 +150,12 @@
                     <a href="./FAQb.html" target="_blank" class="footer-link">See FAQ</a>
                 </div>
                 <div class="col">
-                    <a href="https://www.linkedin.com/in/manvi-garg-a79a20323?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="footer-icon">
+                    <a href="https://www.linkedin.com/in/manvi-garg-a79a20323" target="_blank" class="footer-icon me-2">
                         <i class="fa-solid fa-user"></i>
                     </a>
-                    &nbsp;
-                    <a href="https://www.linkedin.com/in/mahesh-singla-999292324?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="footer-icon">
+                    <a href="https://www.linkedin.com/in/mahesh-singla-999292324" target="_blank" class="footer-icon me-2">
                         <i class="fa-solid fa-user"></i>
                     </a>
-                    &nbsp;
                     <a href="https://www.linkedin.com/in/hemang-mittal-0394b6325/" target="_blank" class="footer-icon">
                         <i class="fa-solid fa-user"></i>
                     </a>
@@ -160,8 +165,7 @@
     </div>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

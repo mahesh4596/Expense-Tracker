@@ -77,6 +77,25 @@
       background-color: #f1f1f1;
     }
   </style>
+    <script>
+        function getQueryParam(param) {
+          const params = new URLSearchParams(window.location.search);
+          return params.get(param);
+        }
+      
+        const user = getQueryParam("user");
+      
+        if (user) {
+          fetch(`/get-user?user=${user}`)
+            .then(res => res.json())
+            .then(data => {
+              if (data && data.user) {
+                document.getElementById("user-name").textContent = data.user;
+              }
+            })
+            .catch(err => console.error("Error fetching user:", err));
+        }
+      </script>
 </head>
 <body>
 

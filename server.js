@@ -45,7 +45,7 @@ a.post("/signup", function(req, res) {
         if (err) {
             res.send(`<script>alert("Signup failed: ${err.message}"); window.history.back();</script>`);
         } else {
-            res.send(`<script>alert("Signed up successfully!"); window.location.href = '/homepage.html';</script>`);        }
+            res.send(`<script>alert("Signed up successfully!"); window.location.href = '/homepage.html?user=${username}';</script>`);        }
     });
 });
 

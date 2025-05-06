@@ -91,6 +91,7 @@
             .then(data => {
               if (data && data.user) {
                 document.getElementById("user-name").textContent = data.user;
+                document.getElementById("welcome-user-name").textContent = data.user;
               }
             })
             .catch(err => console.error("Error fetching user:", err));
@@ -120,9 +121,7 @@
   </div>
 
   <div class="content">
-    <h2 class="mb-4">Welcome back,</h2>
-    <h2 class="mb-4" id="user-name"></h2>
-
+    <h2 class="mb-4">Welcome back, <span id="welcome-user-name">User</span>!</h2>
 
     <!-- Stats -->
     <div class="row g-4 mb-4">

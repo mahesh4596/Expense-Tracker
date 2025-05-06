@@ -73,6 +73,21 @@ a.get("/",function(req,resp){
 a.get("/value",function(req,resp){
     let path=__dirname+"/public/value.html";
     resp.sendFile(path);
+    
+})
+
+a.post("/submit-expense", function(req, res) {
+    let amount = req.body.amount;
+    let note = req.body.note;
+
+    let query = "INSERT INTO expenses (amount, note) VALUES (?, ?)";
+    db.query(query, [amount, note], function(err, result) {
+        if (err) {
+            res.send("Database Error: " + err.message);
+        } else {
+            res.send("Expense Submitted Successfully!");
+        }
+    });
 })
 
 a.get("/working",function(req,resp){

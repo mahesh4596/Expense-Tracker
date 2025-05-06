@@ -6,6 +6,9 @@ var mysql2=require("mysql2");
 
 var a=express();
 
+a.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+a.use(express.json()); // for parsing application/json
+
 a.listen(2005,function(){
     console.log("Server Started");
 })

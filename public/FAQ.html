@@ -66,6 +66,23 @@
                 margin-bottom: 10px;
                 border-radius: 5px;
             }
+            .faq-question {
+                font-weight: 600;
+                cursor: pointer;
+                padding: 15px;
+                background-color: white;
+                margin-bottom: 5px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .faq-question .icon {
+                font-weight: bold;
+                font-size: 1.2rem;
+            }
 
         </style>
     </head>
@@ -88,50 +105,54 @@
     <!-- Script -->
      <script>
             document.addEventListener("DOMContentLoaded", function () {
-            const questions = document.querySelectorAll('.faq-question');
+                const questions = document.querySelectorAll('.faq-question');
 
-            questions.forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
+                questions.forEach(question => {
+                    question.addEventListener('click', () => {
+                        const answer = question.nextElementSibling;
+                        const icon = question.querySelector('.icon');
+
+                        const isOpen = answer.style.display === 'block';
+                        answer.style.display = isOpen ? 'none' : 'block';
+                        icon.textContent = isOpen ? '+' : '-';
+                    });
+                });
             });
-            });
-        });
      </script>
 
     <!-- FAQ Section -->
     <div class="container mt-4">
         <div class="faq-table">
             <div class="faq-item">
-                <div class="faq-question">How do I backup my data?</div>
+                <div class="faq-question">How do I backup my data? <span class="icon">+</span></div>
                 <div class="faq-answer">The website is currently in development mode.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">How do I restore from a backup?</div>
+                <div class="faq-question">How do I restore from a backup? <span class="icon">+</span></div>
                 <div class="faq-answer">The website is currently in development mode.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">How do I delete all data in the app?</div>
+                <div class="faq-question">How do I delete all data in the app? <span class="icon">+</span></div>
                 <div class="faq-answer">The website is currently in development mode.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">How do I synchronize Trackify data between devices using a Dropbox account?</div>
+                <div class="faq-question">How do I synchronize Trackify data between devices using a Dropbox account? <span class="icon">+</span></div>
                 <div class="faq-answer">The website is currently in development mode.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">How do I set a monthly budget in Trackify?</div>
+                <div class="faq-question">How do I set a monthly budget in Trackify? <span class="icon">+</span></div>
                 <div class="faq-answer">The website is currently in development mode.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">Can I export my data to a spreadsheet?</div>
+                <div class="faq-question">Can I export my data to a spreadsheet? <span class="icon">+</span></div>
                 <div class="faq-answer">The website is currently in development mode.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">How do I enable dark mode in the app?</div>
+                <div class="faq-question">How do I enable dark mode in the app? <span class="icon">+</span></div>
                 <div class="faq-answer">The website is currently in development mode.</div>
             </div>
         </div>
-    </div>
+    </div>    
     
 
     <!-- Download Section -->

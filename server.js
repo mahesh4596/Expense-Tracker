@@ -8,8 +8,10 @@ a.listen(2005,function(){
     console.log("Server Started");
 })
 
-let config="mysql://avnadmin:AVNS_dIZcxpU6Z37uwSCP9NR@mysql-22b39436-maheshsingla2006-191d.i.aivencloud.com:12938/defaultdb?";
+let config="mysql://avnadmin:AVNS_EMDLMEESHpTYfD3mM4P@mysql-13392e1b-maheshsingla2006-35f6.k.aivencloud.com:19533/defaultdb";
+
 a.use(express.static("public"));
+
 let mysqlServer=mysql2.createConnection(config);
 mysqlServer.connect(function(err)
 {

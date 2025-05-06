@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sign Up Form</title>
-  <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet"/>
+  <title>Sign Up & Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Roboto&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link rel="icon" href="./Pics/web_logo.jpg"/>
@@ -12,36 +12,34 @@
   <style>
     * {
       box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
     }
 
     body {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, rgb(71, 0, 61), rgb(116, 26, 107), rgb(202, 119, 211), #e7d6ea);
-      background-size: cover;
+      background: linear-gradient(to right, #47003d, #741a6b, #ca77d3, #e7d6ea);
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
     }
 
     .container {
       width: 90%;
-      max-width: 800px;
-      height: auto;
+      max-width: 900px;
       display: flex;
       flex-wrap: wrap;
-      box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4);
+      border-radius: 12px;
       overflow: hidden;
-      border-radius: 10px;
       background: white;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
     }
 
     .left-side, .new-left-side,
     .right-side, .new-right-side {
       width: 100%;
-      padding: 30px;
+      padding: 40px 30px;
     }
 
     @media(min-width: 768px) {
@@ -52,70 +50,73 @@
     }
 
     .left-side, .new-left-side {
-      background-color: rgb(167, 64, 167);
+      background-color: #a740a7;
       color: white;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       text-align: center;
     }
 
     .left-side h1, .new-left-side h1 {
-      font-size: 30px;
+      font-size: 32px;
       margin-top: 20px;
+      font-family: 'Concert One', sans-serif;
     }
 
     .left-side h6 {
       font-size: 17px;
     }
 
-    .right-side .head, .new-right-side .head {
-      font-family: "Concert One", sans-serif;
-      font-weight: 500;
-      font-size: 24px;
-      color: black;
-      margin-bottom: 20px;
-      border-bottom: 2px solid black;
-      padding-bottom: 5px;
+    .head {
+      font-family: 'Concert One', sans-serif;
+      font-size: 28px;
+      margin-bottom: 25px;
+      color: #333;
+      text-align: center;
     }
 
     .form-group {
-      margin-bottom: 20px;
       position: relative;
+      margin-bottom: 22px;
     }
 
     .form-group i {
       position: absolute;
-      top: 12px;
+      top: 50%;
       left: 10px;
-      color: grey;
+      transform: translateY(-50%);
+      color: #aaa;
     }
 
     .form-group input {
       width: 100%;
-      padding: 10px 10px 10px 30px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      padding: 12px 12px 12px 35px;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
       font-size: 16px;
+      transition: border-color 0.3s;
     }
 
     .form-group input:focus {
-      border-color: black;
+      border-color: #7e1e82;
+      outline: none;
     }
 
     .btn {
       width: 100%;
-      background-color: black;
+      background-color: #47003d;
       color: white;
       padding: 12px;
-      border: none;
-      border-radius: 5px;
       font-size: 18px;
-      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      transition: background-color 0.3s;
     }
 
     .btn:hover {
-      background-color: #333;
+      background-color: #63005a;
     }
 
     .err {
@@ -129,25 +130,24 @@
     .d { color: orange; }
 
     #web-logo {
-      width: 80px;
-      height: 80px;
+      width: 90px;
+      height: 90px;
       border-radius: 15px;
-      margin: 0 auto 10px;
-      display: block;
-      transition: transform 2s ease;
+      margin-bottom: 15px;
+      transition: transform 1.5s ease;
     }
 
     #web-logo:hover {
-      transform: rotate(360deg) scale(1.2);
+      transform: rotate(360deg) scale(1.1);
     }
 
     #login, #signup {
       text-align: center;
-      margin-top: 10px;
+      margin-top: 12px;
     }
 
     #login-button, #s-b {
-      color: blue;
+      color: #47003d;
       background: none;
       border: none;
       text-decoration: underline;
@@ -157,20 +157,19 @@
     }
 
     #login-button:hover, #s-b:hover {
-      color: blueviolet;
+      color: #741a6b;
     }
 
-    .active .left-side { display: none; }
-    .active .right-side { display: none; }
-    .active .new-left-side { display: block; }
-    .active .new-right-side { display: block; }
-
-    .new-left-side, .new-right-side {
+    .active .left-side, .active .right-side {
       display: none;
     }
 
-    .new-right-side .form-group input {
-      width: calc(100% - 40px);
+    .active .new-left-side, .active .new-right-side {
+      display: block;
+    }
+
+    .new-left-side, .new-right-side {
+      display: none;
     }
   </style>
 
@@ -223,14 +222,14 @@
 </head>
 <body>
   <div class="container" id="container">
-    <!-- Left for Signup -->
+    <!-- Sign Up Left -->
     <div class="left-side">
       <img id="web-logo" src="Pics/web_logo.jpg" alt="Logo"/>
       <h1>WELCOME GUYS!</h1>
       <h6>Join Us Now!</h6>
     </div>
 
-    <!-- Right for Signup Form -->
+    <!-- Sign Up Right -->
     <div class="right-side">
       <h2 class="head">Sign Up</h2>
       <form method="post" action="/signup">
@@ -249,28 +248,28 @@
           <input type="password" id="password" name="password" placeholder="Password" required>
           <span class="err" id="errpwd"></span>
         </div>
-        <button type="submit" class="btn">Signup</button>
+        <button type="submit" class="btn">Sign Up</button>
       </form>
       <p id="login">Already have an account? <button id="login-button">Login</button></p>
     </div>
 
-    <!-- Left for Login -->
+    <!-- Login Left -->
     <div class="new-left-side">
       <img id="web-logo" src="Pics/web_logo.jpg" alt="Logo"/>
       <h1>WELCOME BACK!</h1>
     </div>
 
-    <!-- Right for Login Form -->
+    <!-- Login Right -->
     <div class="new-right-side">
       <h2 class="head">Login</h2>
-      <form>
+      <form method="post" action="/login">
         <div class="form-group">
           <i class="fa-solid fa-user"></i>
-          <input type="text" placeholder="Username" required>
+          <input type="text" name="txtuser" placeholder="Username" required>
         </div>
         <div class="form-group">
           <i class="fas fa-lock"></i>
-          <input type="password" placeholder="Password" required>
+          <input type="password" name="password" placeholder="Password" required>
         </div>
         <button type="submit" class="btn">Login</button>
       </form>

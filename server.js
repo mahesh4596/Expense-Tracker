@@ -72,7 +72,20 @@ a.get("/",function(req,resp){
 a.get("/value",function(req,resp){
     let path=__dirname+"/public/value.html";
     resp.sendFile(path);
-    
+})
+
+a.get("/get-user", function(req, res) {
+    let username = req.query.user;
+    let query = "SELECT * FROM usersfee WHERE user = ?";
+    db.query(query, [username], function(err, result) {
+        if (err) {
+            res.json({ error: err.message });
+        } else if (result.length > 0) {
+            res.json(result[0]);
+        } else {
+            res.json({ error: "User not found" });
+        }
+    });
 })
 
 a.post("/submit-expense", function(req, res) {

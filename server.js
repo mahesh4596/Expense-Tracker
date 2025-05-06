@@ -13,8 +13,9 @@ a.listen(2005,function(){
     console.log("Server Started");
 })
 
-const db_url = process.env.DATABASE_API;
-let config=db_url;
+let config="mysql://avnadmin:AVNS_EMDLMEESHpTYfD3mM4P@mysql-13392e1b-maheshsingla2006-35f6.k.aivencloud.com:19533/defaultdb";
+
+let db=mysql.createConnection(config);
 
 a.use(express.static("public"));
 

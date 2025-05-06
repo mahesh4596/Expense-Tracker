@@ -43,10 +43,9 @@ a.post("/signup", function(req, res) {
 
     db.query(query, [username, email, pwd], function(err, result) {
         if (err) {
-            res.send("Error: " + err.message);
+            res.send(`<script>alert("Signup failed: ${err.message}"); window.history.back();</script>`);
         } else {
-            res.send("Signed up Successfully!");
-        }
+            res.send(`<script>alert("Signed up successfully!"); window.location.href = '/homepage.html';</script>`);        }
     });
 });
 

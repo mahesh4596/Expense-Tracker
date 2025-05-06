@@ -95,7 +95,7 @@
         date: document.getElementById('date').value
       };
 
-      fetch('/api/expense', {
+      fetch('/submit-expense', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)

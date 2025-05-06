@@ -77,31 +77,52 @@
       background-color: #f1f1f1;
     }
   </style>
+    <script>
+        function getQueryParam(param) {
+          const params = new URLSearchParams(window.location.search);
+          return params.get(param);
+        }
+      
+        const user = getQueryParam("user");
+      
+        if (user) {
+          fetch(`/get-user?user=${user}`)
+            .then(res => res.json())
+            .then(data => {
+              if (data && data.user) {
+                document.getElementById("user-name").textContent = data.user;
+                document.getElementById("welcome-user-name").textContent = data.user;
+              }
+            })
+            .catch(err => console.error("Error fetching user:", err));
+        }
+      </script>
 </head>
 <body>
 
   <div class="side-nav-bar">
     <div class="text-center mb-4">
       <div id="profile-pic"></div>
-      <p id="user-name">John Doe</p>
-      <p id="mob-no">+91 12345 67890</p>
+      <p id="user-name"></p>
+      <!-- <p id="mob-no">+91 12345 67890</p> -->
     </div>
 
     <ul class="nav flex-column">
-      <li class="nav-item">
-        <button id="list-item-1">Dashboard</button>
-      </li>
-      <li class="nav-item">
-        <button id="list-item-2">Transactions</button>
-      </li>
-      <li class="nav-item">
-        <button id="list-item-3">Logout</button>
-      </li>
-    </ul>
+        <li class="nav-item">
+          <button id="list-item-1">Dashboard</button>
+        </li>
+        <li class="nav-item">
+          <button id="list-item-2">Transactions</button>
+        </li>
+        <li class="nav-item">
+          <button id="list-item-3" onclick="location.href='wlcm.html'">Logout</button>
+        </li>
+      </ul>
+      
   </div>
 
   <div class="content">
-    <h2 class="mb-4">Welcome back, John!</h2>
+    <h2 class="mb-4">Welcome back, <span id="welcome-user-name">User</span>!</h2>
 
     <!-- Stats -->
     <div class="row g-4 mb-4">
@@ -160,10 +181,9 @@
 
     <!-- Quick Actions -->
     <div class="mt-5">
-      <h4>Quick Actions</h4>
-      <button class="btn btn-success me-2 mt-2">+ Add Income</button>
-      <button class="btn btn-danger mt-2">- Add Expense</button>
-    </div>
+  <h4>Quick Actions</h4>
+    <button class="btn btn-success me-2 mt-2">+ Add Income</button>
+    <a href="/value" class="btn btn-danger mt-2">- Add Expense</a>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

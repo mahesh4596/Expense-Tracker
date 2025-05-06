@@ -1,153 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trackify | New Expense</title>
-
-  <!-- Bootstrap & FontAwesome -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trackify | Add Expense</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <style>
     body {
-      background-color: rgb(234, 214, 234);
-      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      background: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
     }
-
-    .top-bar {
-      background-color: rgb(167, 64, 167);
+    .header {
+      background: #007bff;
       color: white;
-      padding: 1.5rem 0;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-
-    .value-input {
-      background-color: transparent;
-      border: none;
-      font-size: 2rem;
+    .sidemenu {
+      width: 250px;
+      position: fixed;
+      height: 100%;
+      background: #343a40;
+      transition: 0.3s;
+      right: -250px;
+      top: 0;
+      z-index: 999;
       color: white;
-      text-align: center;
-      max-width: 150px;
-      outline: none;
     }
-
-    .delete-btn {
-      font-size: 1.5rem;
+    .sidemenu.active { right: 0; }
+    .sidemenu a {
       color: white;
-      background: none;
-      border: none;
+      display: block;
+      padding: 15px 20px;
+      text-decoration: none;
     }
-
-    .note-input,
-    .form-select,
-    .form-control {
-      border: 2px solid rgb(145, 52, 145);
-      background-color: transparent;
-      color: rgb(145, 52, 145);
-    }
-
-    .submit-btn {
-      background-color: rgb(234, 214, 234);
-      border: 2px solid rgb(167, 64, 167);
-      color: black;
-      border-radius: 5px;
-      font-size: 1rem;
-      padding: 0.75rem;
+    .overlay {
+      display: none;
+      position: fixed;
       width: 100%;
-      max-width: 500px;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
     }
-
-    .submit-btn:active {
-      background-color: rgba(145, 52, 145, 0.1);
-      transform: scale(1.05);
+    .overlay.active { display: block; }
+    .main-content { padding: 30px; }
+    .pie_chart {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      background: lightgray;
     }
-
-    ::placeholder {
-      color: rgb(145, 52, 145);
+    .btn-balance {
+      margin-top: 30px;
+      font-size: 22px;
+      padding: 12px 30px;
+      border-radius: 50px;
+      background: #28a745;
+      border: none;
+      color: white;
     }
-
-    select:invalid {
-      color: #6c757d;
+    .form-container {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    }
+    .btn-purple {
+      background-color: #a740a7;
+      color: white;
+      border: none;
+    }
+    .btn-purple:hover {
+      background-color: #922f92;
     }
   </style>
 </head>
-
 <body>
+  <div class="header">
+    <h2>Trackify - Expense Tracker</h2>
+    <a href="#" onclick="toggleSideMenu()" class="text-white">
+      <i class="fa-solid fa-bars fa-2x"></i>
+    </a>
+  </div>
 
-  <!-- Top Bar -->
-  <div class="top-bar text-center">
-    <div class="container d-flex justify-content-between align-items-center">
-      <a href="#back" class="text-white h3 mb-0"><i class="fas fa-arrow-left"></i></a>
-      <h1 class="mb-0">New Expense</h1>
-      <span></span>
+  <div class="sidemenu" id="sidemenu">
+    <div class="sidemenu-header">
+      <i class="fa-solid fa-arrow-right" onclick="toggleSideMenu()"></i>
+    </div>
+    <ul class="list-unstyled p-3">
+      <li><a href="#"><i class="fa-solid fa-user"></i> Profile</a></li>
+      <li><a href="#"><i class="fa-solid fa-layer-group"></i> Categories</a></li>
+      <li><a href="#"><i class="fa-solid fa-coins"></i> Transactions</a></li>
+    </ul>
+  </div>
+  <div id="overlay" class="overlay" onclick="toggleSideMenu()"></div>
+
+  <div class="main-content container">
+    <div class="text-center mb-5">
+      <h3>Expense Distribution</h3>
+      <div class="pie_chart" id="pieChart"></div>
+    </div>
+
+    <div class="form-container">
+      <form id="expenseForm">
+        <div class="mb-3">
+          <label for="amount" class="form-label">Amount</label>
+          <input type="number" class="form-control" id="amount" name="amount" required>
+        </div>
+        <div class="mb-3">
+          <label for="note" class="form-label">Note</label>
+          <input type="text" class="form-control" id="note" name="note" required>
+        </div>
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select class="form-select" id="category" name="category" required>
+            <option value="">Select Category</option>
+            <option value="phone">Phone</option>
+            <option value="home">Home</option>
+            <option value="gift">Gift</option>
+            <option value="train">Train</option>
+            <option value="car">Car</option>
+            <option value="brush">Toiletries</option>
+            <option value="bath">Bath</option>
+            <option value="dining">Dining</option>
+            <option value="medical">Medical</option>
+            <option value="drinks">Drinks</option>
+            <option value="cloth">Clothing</option>
+            <option value="dog">Pet</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="date" class="form-label">Date</label>
+          <input type="date" class="form-control" id="date" name="date" required>
+        </div>
+        <button type="submit" class="btn btn-purple w-100">Submit Expense</button>
+      </form>
+      <div id="responseMsg" class="text-center mt-3"></div>
+    </div>
+
+    <div class="text-center">
+      <button class="btn btn-balance" id="balanceBtn">Balance: $1000</button>
     </div>
   </div>
 
-  <!-- Expense Form -->
-  <div class="container mt-5">
-    <form class="text-center needs-validation" novalidate>
-
-      <!-- Expense Value -->
-      <div class="bg-primary p-4 rounded d-flex justify-content-center align-items-center text-white mb-4">
-        <i class="fas fa-money-bill-wave fa-2x me-3"></i>
-        <input type="number" class="value-input" placeholder="0" id="add_money" required min="1" />
-        <button type="button" class="delete-btn ms-3" onclick="document.getElementById('add_money').value = '';">&#10005;</button>
-      </div>
-
-      <!-- Notes -->
-      <div class="mb-3">
-        <input type="text" class="note-input form-control-lg text-center" placeholder="Note (e.g., Lunch, Metro, Book)" id="notes" required />
-      </div>
-
-      <!-- Category -->
-      <div class="mb-3">
-        <select class="form-select form-control text-center" required id="category">
-          <option value="" disabled selected>Select Category</option>
-          <option value="Food">Food</option>
-          <option value="Travel">Travel</option>
-          <option value="Shopping">Shopping</option>
-          <option value="Utilities">Utilities</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-
-      <!-- Date -->
-      <div class="mb-4">
-        <input type="date" class="form-control text-center" id="date" required max="{{today}}" />
-      </div>
-
-      <!-- Submit Button -->
-      <button type="submit" class="submit-btn">
-        <i class="fas fa-plus-circle"></i> Add Expense
-      </button>
-    </form>
-  </div>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Validation Script -->
   <script>
-    // Set today's date as default max date
-    document.getElementById('date').max = new Date().toISOString().split("T")[0];
+    function toggleSideMenu() {
+      document.getElementById('sidemenu').classList.toggle('active');
+      document.getElementById('overlay').classList.toggle('active');
+    }
 
-    // Bootstrap form validation
-    (() => {
-      'use strict';
-      const forms = document.querySelectorAll('.needs-validation');
-      Array.from(forms).forEach(form => {
-        form.addEventListener('submit', event => {
-          if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-        }, false);
-      });
-    })();
+    const totalBudget = 1000;
+    const expenses = {
+      phone: 0, home: 0, gift: 0, train: 0, car: 0, brush: 0,
+      bath: 0, dining: 0, medical: 0, drinks: 0, cloth: 0, dog: 0
+    };
+    const colors = {
+      phone: "rgb(104, 104, 195)", home: "rgb(48, 177, 108)",
+      gift: "rgb(206, 79, 41)", train: "rgb(218, 107, 185)",
+      car: "rgb(114, 195, 114)", brush: "rgb(147, 57, 120)",
+      bath: "rgb(79, 145, 236)", dining: "rgb(145, 57, 245)",
+      medical: "rgb(211, 121, 93)", drinks: "rgb(229, 165, 61)",
+      cloth: "rgb(92, 50, 189)", dog: "rgb(179, 136, 68)"
+    };
+
+    function updateChart() {
+      const total = Object.values(expenses).reduce((acc, val) => acc + val, 0);
+      let gradient = "conic-gradient(";
+      let startAngle = 0;
+      for (let category in expenses) {
+        const proportion = total ? (expenses[category] / total) * 360 : 0;
+        const endAngle = startAngle + proportion;
+        gradient += `${colors[category]} ${startAngle}deg ${endAngle}deg, `;
+        startAngle = endAngle;
+      }
+      gradient = gradient.slice(0, -2) + ")";
+      document.getElementById("pieChart").style.background = gradient;
+      const remaining = totalBudget - total;
+      document.getElementById("balanceBtn").textContent = `Balance: $${remaining >= 0 ? remaining.toFixed(2) : '0.00'}`;
+    }
+
+    document.getElementById('expenseForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const data = {
+        amount: parseFloat(document.getElementById('amount').value),
+        note: document.getElementById('note').value,
+        category: document.getElementById('category').value,
+        date: document.getElementById('date').value
+      };
+
+      if (!data.category || isNaN(data.amount) || data.amount <= 0) {
+        document.getElementById('responseMsg').textContent = 'Invalid input';
+        return;
+      }
+
+      expenses[data.category] += data.amount;
+      updateChart();
+
+      fetch('/submit-expense', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(res => res.json())
+        .then(response => {
+          document.getElementById('responseMsg').textContent = response.message || response.error;
+          document.getElementById('expenseForm').reset();
+        })
+        .catch(() => {
+          document.getElementById('responseMsg').textContent = 'Failed to submit expense.';
+        });
+    });
   </script>
-
 </body>
-
 </html>

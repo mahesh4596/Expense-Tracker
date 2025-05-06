@@ -67,6 +67,15 @@
       padding: 40px;
       background-color: #ffffff;
     }
+
+    .stats-card {
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .table th {
+      background-color: #f1f1f1;
+    }
   </style>
 </head>
 <body>
@@ -83,7 +92,7 @@
         <button id="list-item-1">Dashboard</button>
       </li>
       <li class="nav-item">
-        <button id="list-item-2">Settings</button>
+        <button id="list-item-2">Transactions</button>
       </li>
       <li class="nav-item">
         <button id="list-item-3">Logout</button>
@@ -92,9 +101,69 @@
   </div>
 
   <div class="content">
-    <!-- Main content goes here -->
-    <h2>Welcome to Your Dashboard</h2>
-    <p>This is where your main application content will appear.</p>
+    <h2 class="mb-4">Welcome back, John!</h2>
+
+    <!-- Stats -->
+    <div class="row g-4 mb-4">
+      <div class="col-md-4">
+        <div class="p-4 bg-success text-white stats-card">
+          <h4>Total Income</h4>
+          <p class="fs-4">₹25,000</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4 bg-danger text-white stats-card">
+          <h4>Total Expenses</h4>
+          <p class="fs-4">₹12,300</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4 bg-primary text-white stats-card">
+          <h4>Balance</h4>
+          <p class="fs-4">₹12,700</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <h4>Recent Transactions</h4>
+    <table class="table table-bordered mt-3">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Type</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2025-05-01</td>
+          <td>Grocery Shopping</td>
+          <td>Expense</td>
+          <td>₹2,000</td>
+        </tr>
+        <tr>
+          <td>2025-04-28</td>
+          <td>Salary Credit</td>
+          <td>Income</td>
+          <td>₹25,000</td>
+        </tr>
+        <tr>
+          <td>2025-04-25</td>
+          <td>Electricity Bill</td>
+          <td>Expense</td>
+          <td>₹1,500</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Quick Actions -->
+    <div class="mt-5">
+      <h4>Quick Actions</h4>
+      <button class="btn btn-success me-2 mt-2">+ Add Income</button>
+      <button class="btn btn-danger mt-2">- Add Expense</button>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

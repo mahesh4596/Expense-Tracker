@@ -1,3 +1,5 @@
+require('dotenv').config(); // Add this at the top
+
 var express=require("express");
 
 var mysql2=require("mysql2");
@@ -8,11 +10,13 @@ a.listen(2005,function(){
     console.log("Server Started");
 })
 
-let config="mysql://avnadmin:AVNS_EMDLMEESHpTYfD3mM4P@mysql-13392e1b-maheshsingla2006-35f6.k.aivencloud.com:19533/defaultdb";
+const db_url = process.env.DATABASE_API;
+let config=db_url;
 
 a.use(express.static("public"));
 
 let mysqlServer=mysql2.createConnection(config);
+
 mysqlServer.connect(function(err)
 {
     if(err==null)
@@ -21,10 +25,26 @@ mysqlServer.connect(function(err)
     console.log(err.message);
 })
 
-a.get("/signup",function(req,resp){
-    let path=__dirname+"/public/signup.html";
-    resp.sendFile(path);
-})
+a.get("/signup", function(req, res) {
+    res.sendFile(path.join(__dirname, "public", "signup.html"));
+});
+
+a.post("/signup", function(req, res) {
+    let username = req.body.txtuser;
+    let email = req.body.txtemail;
+    let pwd = req.body.password;
+
+    // Add id and primary key to usersfee
+    let query = "INSERT INTO usersfee (user, email, pwd) VALUES (?, ?, ?)";
+
+    db.query(query, [username, email, pwd], function(err, result) {
+        if (err) {
+            res.send("Error: " + err.message);
+        } else {
+            res.send("Signed up Successfully!");
+        }
+    });
+});
 
 a.get("/privacy",function(req,resp){
     let path=__dirname+"/public/privacy.html";
